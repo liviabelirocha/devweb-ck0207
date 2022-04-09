@@ -22,8 +22,8 @@ body {
 
 .dropbtn {
   color: white;
-  padding: 1rem;
   text-decoration: none;
+  padding: 1rem;
 }
 
 .dropdown {
@@ -38,6 +38,8 @@ body {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+
+  top:2rem;
 }
 
 .dropdown-content a {
@@ -89,27 +91,37 @@ body {
   justify-self: center;
   border-radius: 5px;
   box-shadow: 10px 10px 5px #888;
+
+  max-width: 100%;
+  height: auto;
 }
 
 .centralizado {
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
+  gap: 30px;
+
+  padding: 0 12px;
+
+  flex-grow: 1;
 }
 
 .secoes {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  margin: 2rem 10px;
-  padding: 10px;
+
+  margin: 2rem 0;
+  padding: 10px 12px ;
 
   color:white;
   text-align: center;
   background-color: #506380;
 
   border-radius: 5px;
+
+  font-size: 16px;
 }
 
 .botao {
@@ -117,6 +129,10 @@ body {
   border-radius: 5px;
   background-color: white;
   color: black;
+}
+
+.botao:hover{
+  background-color: yellow;
 }
 
 .titulo {
