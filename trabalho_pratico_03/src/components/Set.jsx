@@ -1,3 +1,4 @@
+import { Col, Row } from "antd";
 import "../styles/components/Set.css"
 
 const Set = () => {
