@@ -1,10 +1,10 @@
 import "../styles/components/Set.css"
 
-const Set = () => {
+const Set = ({scoreTeam1, scoreTeam2}) => {
   return (
     <div className="set">
-      <p>3</p>
-      <p>2</p>
+      <p>{scoreTeam1}</p>
+      <p>{scoreTeam2}</p>
     </div>
   );
 };

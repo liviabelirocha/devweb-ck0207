@@ -1,0 +1,20 @@
+.scoreboard {
+    display: inline-grid;
+    grid-template: 1fr/1fr auto .25fr;
+    background-color: #1890ff;
+    color: white;
+    border: 3px solid #1890ff;
+    border-radius: 5px;
+}
+
+.teams {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.sets {
+    padding: 0px 5px;
+    display: flex;
+    justify-content: space-around;
+}
