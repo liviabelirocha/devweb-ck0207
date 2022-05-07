@@ -1,8 +1,15 @@
 .content_container{
-    padding: 20% 10%;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 10%;
 }
 
 .controls{
     display: flex;
     justify-content: space-between;
+}
+
+.content_container > img {
+    align-self: center;
+    margin-bottom: 10vh;
 }

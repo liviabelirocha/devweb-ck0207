@@ -1,3 +1,18 @@
-.set{
-    
+.set {
+    padding: 0px 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.teamWon {
+    font-weight: 700;
+}
+
+.teamLost {
+    font-weight: 200;
+}
+
+.tbd {
+    color: white
 }

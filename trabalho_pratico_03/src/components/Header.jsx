@@ -1,6 +1,8 @@
 import { Col, Row, Button } from "antd";
 import { useState, useRef } from "react";
 
+import "../styles/components/Header.css"
+
 const Header = ({ children, title }) => {
 
   const [timer, setTimer] = useState(0)
@@ -44,7 +46,7 @@ const Header = ({ children, title }) => {
   }
 
   const handleProgressMatch = () => {
-    if (isActive) handleStart()
+    if (!isActive) handleStart()
 
     console.log("Insert match progression logic")
   }
@@ -54,6 +56,7 @@ const Header = ({ children, title }) => {
   }
 
   const handleResetMatch = () => {
+    handleReset()
     console.log("Insert reset match logic")
   }
 
@@ -62,16 +65,17 @@ const Header = ({ children, title }) => {
     <>
       <Row justify="space-between">
         <Col span={20}>
-          <h1>{title}</h1>
+          <h1 className="title">{title}</h1>
         </Col>
         <Col span={4} style={{ display: "contents" }}>
           <h2>{formatTime()}</h2>
         </Col>
       </Row>
-      <hr></hr>
-      <br />
-      {children}
-      <br />
+      {/* <br /> */}
+      <div className="content">
+        {children}
+      </div>
+      {/* <br /> */}
 
       <div className="controls">
         <Button onClick={handleProgressMatch} type="primary">Marcar Time1</Button>

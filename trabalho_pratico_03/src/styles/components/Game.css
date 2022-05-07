@@ -1,6 +1,11 @@
-.game{
+.game {
+    font-weight: 700;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-around; 
+    align-items: center;   
+    color: #0050b3;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 5px;
 }
