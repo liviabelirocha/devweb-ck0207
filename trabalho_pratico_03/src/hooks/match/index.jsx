@@ -11,6 +11,12 @@ const MatchProvider = ({ children }) => {
     pair2player2: "",
     superTieBreak: "",
     whichPairBegins: "",
+    pair1GamePoints: 0,
+    pair2GamePoints: 0,
+    pair1SetPoints: [0],
+    pair2SetPoints: [0],
+    pair1MatchPoints: 0,
+    pair2MatchPoints: 0,
   });
 
   // const [isVisible, setIsVisible] = useState(false);
