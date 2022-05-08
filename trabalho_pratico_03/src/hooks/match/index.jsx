@@ -1,42 +1,44 @@
 import React, { createContext, useContext, useState } from "react";
 
-// import Modal from "../../components/Modal";
-
-const ModalContext = createContext({});
+const MatchContext = createContext({});
 const MatchProvider = ({ children }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [modalOptions, setModalOptions] = useState({});
+  const [matchState, setMatchState] = useState({
+    description: "",
+    numberOfSets: "",
+    pair1player1: "",
+    pair1player2: "",
+    pair2player1: "",
+    pair2player2: "",
+    superTieBreak: "",
+    whichPairBegins: "",
+  });
 
-  const showModal = React.useCallback((options = {}) => {
-    setModalOptions(options);
-    setIsVisible(true);
-  }, []);
+  // const [isVisible, setIsVisible] = useState(false);
+  // const [modalOptions, setModalOptions] = useState({});
 
-  const hideModal = () => {
-    setIsVisible(false);
-  };
+  // const showModal = React.useCallback((options = {}) => {
+  //   setModalOptions(options);
+  //   setIsVisible(true);
+  // }, []);
+
+  // const hideModal = () => {
+  //   setIsVisible(false);
+  // };
 
   return (
-    <ModalContext.Provider
+    <MatchContext.Provider
       value={{
-        showModal,
-        hideModal,
+        matchState,
+        setMatchState,
       }}
     >
-      <Modal
-        isVisible={isVisible}
-        onPressConfirmButton={hideModal}
-        toggleModal={() => setIsVisible(!isVisible)}
-        type={"mono"}
-        {...modalOptions}
-      />
       {children}
-    </ModalContext.Provider>
+    </MatchContext.Provider>
   );
 };
 
-function useModal() {
-  const context = useContext(ModalContext);
+function useMatch() {
+  const context = useContext(MatchContext);
 
   if (!context) {
     throw new Error("useModal must be used within a MatchProvider");
@@ -45,4 +47,4 @@ function useModal() {
   return context;
 }
 
-export { MatchProvider, useModal };
+export { MatchProvider, useMatch };

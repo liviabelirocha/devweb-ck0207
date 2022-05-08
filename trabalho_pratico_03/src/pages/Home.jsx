@@ -4,13 +4,20 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { InputForm } from "../components/FormInput";
+import { useMatch } from "../hooks/match";
 
 const FormSchema = Yup.object().shape({
   description: Yup.string().required("Descrição obrigatória"),
-  pair1: Yup.string().required(
+  pair1player1: Yup.string().required(
     "Por favor insira o nome dos integrantes da dupla"
   ),
-  pair2: Yup.string().required(
+  pair1player2: Yup.string().required(
+    "Por favor insira o nome dos integrantes da dupla"
+  ),
+  pair2player1: Yup.string().required(
+    "Por favor insira o nome dos integrantes da dupla"
+  ),
+  pair2player2: Yup.string().required(
     "Por favor insira o nome dos integrantes da dupla"
   ),
   whichPairBegins: Yup.string().required("Senha obrigatória"),
@@ -20,8 +27,11 @@ const FormSchema = Yup.object().shape({
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const { setMatchState } = useMatch();
+
   const submitForm = (values) => {
-    console.log(values);
+    setMatchState(values);
 
     navigate("/match");
   };
@@ -32,8 +42,10 @@ const Home = () => {
       <Formik
         initialValues={{
           description: "",
-          pair1: "",
-          pair2: "",
+          pair1player1: "",
+          pair1player2: "",
+          pair2player1: "",
+          pair2player2: "",
           whichPairBegins: "Par 1",
           numberOfSets: "Set Único",
           superTieBreak: "Não",
@@ -46,8 +58,22 @@ const Home = () => {
             style={{ width: "50%", marginLeft: "auto", marginRight: "auto" }}
           >
             <InputForm label="Descrição" name="description" multiline={true} />
-            <InputForm label="Nome da Primeira Dupla" name="pair1" />
-            <InputForm label="Nome da Segunda Dupla" name="pair2" />
+            <InputForm
+              label="Nome do Primeiro Jogador da Primeira Dupla"
+              name="pair1player1"
+            />
+            <InputForm
+              label="Nome do Segundo Jogador da Primeira Dupla"
+              name="pair1player2"
+            />
+            <InputForm
+              label="Nome do Primeiro Jogador da Segunda Dupla"
+              name="pair2player1"
+            />
+            <InputForm
+              label="Nome do Segundo Jogador da Segunda Dupla"
+              name="pair2player2"
+            />
             <InputForm
               label="Primeiro Par a Sacar"
               name="whichPairBegins"
