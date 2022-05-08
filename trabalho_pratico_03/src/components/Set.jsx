@@ -1,16 +1,32 @@
 import { Col, Row } from "antd";
-import "../styles/components/Set.css"
+import { useEffect, useState } from "react";
+import { useMatch } from "../hooks/match";
+import "../styles/components/Set.css";
 
-const Set = ({ scoreTeam1, scoreTeam2, won = "tbd" }) => {
-  let teamOne = "tbd";
-  let teamTwo = "tbd";
-  if (won === "teamOne") {
-    teamOne = "teamWon";
-    teamTwo = "teamLost";
-  } else if (won === "teamTwo") {
-    teamOne = "teamLost";
-    teamTwo = "teamWon";
-  }
+const Set = ({ scoreTeam1, scoreTeam2, winner }) => {
+  const { matchState } = useMatch();
+
+  const [teamOne, setTeamOne] = useState("tbd");
+  const [teamTwo, setTeamTwo] = useState("tbd");
+
+  useEffect(() => {
+    if (matchState.pair1SetPoints.length <= 1) {
+      setTeamOne("t");
+      setTeamTwo("t");
+
+      return;
+    }
+
+    if (winner === "pair1") {
+      setTeamOne("teamWon");
+      setTeamTwo("teamLost");
+    }
+    if (winner === "pair2") {
+      setTeamOne("teamLost");
+      setTeamTwo("teamWon");
+    }
+  }, [winner, matchState]);
+
   return (
     <div className="set">
       <p className={teamOne}>{scoreTeam1}</p>

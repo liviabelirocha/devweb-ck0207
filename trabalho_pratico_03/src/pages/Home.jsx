@@ -28,10 +28,12 @@ const FormSchema = Yup.object().shape({
 const Home = () => {
   const navigate = useNavigate();
 
-  const { setMatchState, matchState } = useMatch();
+  const { setMatchState, matchState, setFormData } = useMatch();
 
   const submitForm = (values) => {
-    setMatchState({...matchState, ...values});
+    setFormData(values);
+
+    setMatchState({ ...matchState, ...values });
 
     navigate("/match");
   };
