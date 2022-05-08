@@ -1,5 +1,6 @@
 import { Col, Row, Button } from "antd";
 import { useState, useRef } from "react";
+import { useMatch } from "../hooks/match";
 
 import "../styles/components/Header.css"
 
@@ -7,24 +8,12 @@ const Header = ({ children, title }) => {
 
   const [timer, setTimer] = useState(0)
   const [isActive, setIsActive] = useState(false)
-  const [isPaused, setIsPaused] = useState(false)
   const increment = useRef(null)
+
+  const { addGamePoint } = useMatch()
 
   const handleStart = () => {
     setIsActive(true)
-    setIsPaused(true)
-    increment.current = setInterval(() => {
-      setTimer((timer) => timer + 1)
-    }, 1000)
-  }
-
-  const handlePause = () => {
-    clearInterval(increment.current)
-    setIsPaused(false)
-  }
-
-  const handleResume = () => {
-    setIsPaused(true)
     increment.current = setInterval(() => {
       setTimer((timer) => timer + 1)
     }, 1000)
@@ -33,7 +22,6 @@ const Header = ({ children, title }) => {
   const handleReset = () => {
     clearInterval(increment.current)
     setIsActive(false)
-    setIsPaused(false)
     setTimer(0)
   }
 
@@ -45,10 +33,14 @@ const Header = ({ children, title }) => {
     return `${getMinutes} : ${getSeconds}`
   }
 
-  const handleProgressMatch = () => {
+  const handleTeam1Score = () => {
     if (!isActive) handleStart()
+    addGamePoint(1)
+  }
 
-    console.log("Insert match progression logic")
+  const handleTeam2Score = () => {
+    if (!isActive) handleStart()
+    addGamePoint(2)
   }
 
   const handleUndoPoint = () => {
@@ -78,8 +70,8 @@ const Header = ({ children, title }) => {
       {/* <br /> */}
 
       <div className="controls">
-        <Button onClick={handleProgressMatch} type="primary">Marcar Time1</Button>
-        <Button onClick={handleProgressMatch} type="primary">Marcar Time2</Button>
+        <Button onClick={handleTeam1Score} type="primary">Marcar Time1</Button>
+        <Button onClick={handleTeam2Score} type="primary">Marcar Time2</Button>
         <Button onClick={handleUndoPoint}>Desfazer Marcação</Button>
         <Button onClick={handleResetMatch} danger>Reiniciar Partida</Button>
       </div>

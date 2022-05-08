@@ -5,12 +5,11 @@ import { Team } from "./Team"
 import '../styles/components/Scoreboard.css'
 
 import "../styles/components/Scoreboard.css"
+import { useMatch } from "../hooks/match";
 
 const Scoreboard = ({teams}) => {
 
-  const sets = [
-    { team1: 3, team2: 3 },
-  ];
+  const { matchState } = useMatch()
 
   return (
     <div className="scoreboard">
@@ -23,11 +22,11 @@ const Scoreboard = ({teams}) => {
           ))}
       </div>
       <div className="sets">
-        {sets.map((set, index) => {
+        {matchState.pair1SetPoints.map((set, index) => {
           return (
             <Set
-              scoreTeam1={set.team1}
-              scoreTeam2={set.team2}
+              scoreTeam1={set}
+              scoreTeam2={matchState.pair2SetPoints[index]}
             />
           );
         })}

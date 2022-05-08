@@ -4,15 +4,24 @@ import { Scoreboard } from "../components/Scoreboard";
 import { Header } from "../components/Header";
 
 import "../styles/pages/Match.css";
+import { useMatch } from "../hooks/match";
 
 const Match = () => {
-  const title = "Open DC de Beach Tennis"
+
+  const { matchState } = useMatch();
+
+  const title = matchState.description
+  
   const constructTeam = (playerOne, playerTwo, plunder1, plunder2) => {
     return [{name: playerOne, plunder: plunder1}, {name: playerTwo, plunder: plunder2}];
   }
+
+  let firstTeam = matchState.whichPairBegins === "Par 1" ? true : false;
+  let secondTeam = !firstTeam;
+
   const teams = [
-    constructTeam("Fernando Trinta", "Lincoln Rocha", true, false),
-    constructTeam("João Paulo Pordeus", "Paulo Rêgo", false, false),
+    constructTeam(matchState.pair1player1, matchState.pair1player2, firstTeam, false),
+    constructTeam(matchState.pair2player1, matchState.pair2player2, secondTeam, false),
   ];
 
   return (

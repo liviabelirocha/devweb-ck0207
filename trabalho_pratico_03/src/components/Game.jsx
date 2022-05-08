@@ -1,15 +1,14 @@
+import { useMatch } from "../hooks/match";
 import "../styles/components/Game.css"
 
 const Game = () => {
-  const gameScore = {
-    team1: 15,
-    team2: 30
-  };
+
+  const { matchState } = useMatch();
 
   return (
     <div className="game">
-      <p>{gameScore['team1']}</p>
-      <p>{gameScore['team2']}</p>
+      <p>{matchState.pair1GamePoints}</p>
+      <p>{matchState.pair2GamePoints}</p>
     </div>
   );
 };
