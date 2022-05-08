@@ -1,0 +1,14 @@
+@use "../../styles/global";
+
+.form-container {
+  display: flex;
+  width: 100%;
+
+  margin-bottom: 12px;
+}
+
+.error {
+  display: flex;
+  font-size: 14px;
+  color: global.$border-attention;
+}
